@@ -20,6 +20,8 @@ public class Main {
         nuevoArbol.agregarHijo(12);
         nuevoArbol.agregarHijo(5);
         nuevoArbol.agregarHijo(1);
+        nuevoArbol.agregarHijo(25);
+        nuevoArbol.agregarHijo(30);
 //        nuevoArbol.imprimir();
         Nodo nodoRaiz = nuevoArbol.getRaiz();
 //        int profundidad = nuevoArbol.getProfundidad(nodoRaiz);
@@ -32,14 +34,17 @@ public class Main {
 
 //        Lista nodosHoja = nuevoArbol.getNodosHoja(nodoRaiz);
 //        nodosHoja.imprimir();
-
-        Nodo nodoObjetivo = nuevoArbol.nodoPorValor(5);
-        if(nodoObjetivo != null){
-            System.out.println("Padre del nodo:" + nodoObjetivo.getPadre().getValor());
+        nuevoArbol.imprimir();
+        System.out.println("^--Arbol original--\n\n");
+        Nodo nodoProblema = nuevoArbol.nodoPorValor(20);
+        if(nodoProblema != null){
+            nuevoArbol.rotacionDerecha(nodoProblema);
         }
         else{
             System.out.println("Nodo no econtrado");
         }
+        nuevoArbol.imprimir();
+        
         
     }
     

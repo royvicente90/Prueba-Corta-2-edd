@@ -89,7 +89,6 @@ public class Arbol {
             }
         }
         while(!porVisitar.esVacia()){
-            
             navegador = porVisitar.devuelveDelPrincipio();
             System.out.println(navegador.getValor() + " - [Hijo de "+ navegador.getPadre().getValor() +"]");
             
@@ -174,12 +173,76 @@ public class Arbol {
     }
     
     public void rotacionIzquierda(Nodo nodoProblema){
-        //Determinar si el nodo problema hijo esta por la izquierda o la derecha
-        if(nodoProblema.getPadre().getHijoDerecho() == nodoProblema){
-            System.out.println("Es el hijo por la derecha");
+        //Determinar si el nodo problema hijo esta por la izquierda o la derecha de su padre
+        if(nodoProblema.getPadre().getHijoDerecho().getValor() == nodoProblema.getValor()){
+            
+            nodoProblema.getPadre().setHijoDerecho(nodoProblema.getHijoIzquierdo());
+            nodoProblema.getHijoIzquierdo().setPadre(nodoProblema.getPadre());
+            
+            //Volvemos a agregar el nodo
+            int valorProblema = nodoProblema.getValor();
+            this.agregarHijo(valorProblema);
+            
+            //Rompemos todas las conexiones del nodo problema
+            nodoProblema.setPadre(null);
+            nodoProblema.setHijoDerecho(null);
+            nodoProblema.setHijoDerecho(null);
+            nodoProblema.setSiguiente(null);
+            System.out.println("Rotacion izquierda completa!");
         }
         else{
-            System.out.println("Es hijo izquierdo");
+            //Sabemos que es hijo izquierdo, entonces podemos enlazar el padre por la izquierda
+            nodoProblema.getPadre().setHijoIzquierdo(nodoProblema.getHijoIzquierdo());
+            nodoProblema.getHijoIzquierdo().setPadre(nodoProblema.getPadre());
+            
+            //Volvemos a agregar el nodo
+            int valorProblema = nodoProblema.getValor();
+            this.agregarHijo(valorProblema);
+            
+            //Rompemos todas las conexiones del nodo problema
+            nodoProblema.setPadre(null);
+            nodoProblema.setHijoDerecho(null);
+            nodoProblema.setHijoDerecho(null);
+            nodoProblema.setSiguiente(null);
+            
+            System.out.println("Rotacion izquierda completa!");
+        }
+    }
+    
+    public void rotacionDerecha(Nodo nodoProblema){
+        //Determinar si el nodo problema hijo esta por la izquierda o la derecha de su padre
+        System.out.println("Nodo poblema: " + nodoProblema.getValor() + " | nodo padre: "+ nodoProblema.getPadre().getValor() + " | hijo derecho: " + nodoProblema.getPadre().getHijoDerecho().getValor());
+        if(nodoProblema.getPadre().getHijoDerecho().getValor() == nodoProblema.getValor()){
+            System.out.println("Es hijo por la derecha!");
+            nodoProblema.getPadre().setHijoDerecho(nodoProblema.getHijoDerecho());
+            nodoProblema.getHijoDerecho().setPadre(nodoProblema.getPadre());
+            
+            //Volvemos a agregar el nodo
+            this.agregarHijo(nodoProblema.getValor());
+            
+            //Rompemos todas las conexiones del nodo problema
+            nodoProblema.setPadre(null);
+            nodoProblema.setHijoDerecho(null);
+            nodoProblema.setHijoDerecho(null);
+            nodoProblema.setSiguiente(null);
+            System.out.println("Rotacion derecha completa!");
+        }
+        else{
+            System.out.println("Es hijo por la izquierda!");
+            //Sabemos que es hijo izquierdo, entonces podemos enlazar el padre por la izquierda
+            nodoProblema.getPadre().setHijoIzquierdo(nodoProblema.getHijoDerecho());
+            nodoProblema.getHijoDerecho().setPadre(nodoProblema.getPadre());
+            
+            //Volvemos a agregar el nodo
+            this.agregarHijo(nodoProblema.getValor());
+            
+            //Rompemos todas las conexiones del nodo problema
+            nodoProblema.setPadre(null);
+            nodoProblema.setHijoDerecho(null);
+            nodoProblema.setHijoDerecho(null);
+            nodoProblema.setSiguiente(null);
+            
+            System.out.println("Rotacion derecha completa!");
         }
     }
     

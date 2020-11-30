@@ -30,6 +30,7 @@ public class Lista {
     }
     
     public void agregarAlFinal(Nodo nuevoNodo){
+        nuevoNodo.setSiguiente(null);
         if(this.primero == null){
             this.primero = nuevoNodo;
             this.ultimo = this.primero;
