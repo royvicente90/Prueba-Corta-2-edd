@@ -18,7 +18,9 @@ public class Main {
         nuevoArbol.agregarHijo(8);
         nuevoArbol.agregarHijo(20);
         nuevoArbol.agregarHijo(12);
-//        nuevoArbol.imprimir();
+        nuevoArbol.agregarHijo(5);
+        nuevoArbol.agregarHijo(1);
+        nuevoArbol.imprimir();
         Nodo nodoRaiz = nuevoArbol.getRaiz();
         int profundidad = nuevoArbol.getProfundidad(nodoRaiz);
         System.out.println("Profundidad: " +profundidad);

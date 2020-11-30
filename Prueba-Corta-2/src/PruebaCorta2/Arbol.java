@@ -101,39 +101,82 @@ public class Arbol {
     
     public int getProfundidad(Nodo nodoRaiz){
         System.out.println("--Iniciando get profundidad--");
-        int profundidad = 1;
+        int profundidadMayor = 0;
+        int contador = 0;
         Lista porVisitar = new Lista();
         porVisitar.agregarAlFinal(nodoRaiz);
         Nodo navegador;
-        String visitaAnterior = "";
+        Lista nodosHoja = new Lista();
         
+//        while(!porVisitar.esVacia()){
+//            navegador = porVisitar.devuelveDelPrincipio();
+//            System.out.println("En el nodo:" + navegador.getValor());
+//            if(navegador.getHijoIzquierdo() != null){
+//                if(!navegador.isIzquierdaVisitada()){
+//                   System.out.println("Agregado por la izquierda: " + navegador.getHijoIzquierdo().getValor());
+//                   porVisitar.agregarAlFinal(navegador.getHijoIzquierdo());
+//                   navegador.setIzquierdaVisitada(true);
+//                }
+//                if(visitaAnterior.equals("izquierda")){
+//                    profundidad++;
+//                }
+//                visitaAnterior = "izquierda";
+//            }
+//            else if(navegador.getHijoDerecho() != null && !navegador.isDerechaVisitada()){
+//               
+//                System.out.println("Agregado por la derecha: " + navegador.getHijoDerecho().getValor());
+//                porVisitar.agregarAlFinal(navegador.getHijoDerecho());
+//                navegador.setDerechaVisitada(true);
+//                if(visitaAnterior.equals("derecha")){
+//                    profundidad++;
+//                }
+//                visitaAnterior = "derecha"; 
+//            }
+//            else{
+//                //caso donde se llego a un nodo hoja, y se agrega el nodo actualmente para explorar la derecha
+//                porVisitar.agregarAlFinal(navegador.getPadre());
+//            }
+//        }
+        int nodosHijos = 0;
+        //Ciclo para encontrar todos los nodos hoja del sistema
         while(!porVisitar.esVacia()){
             navegador = porVisitar.devuelveDelPrincipio();
-            System.out.println("En el nodo:" + navegador.getValor());
+//            System.out.println(navegador.getValor() + " - [Hijo de "+ navegador.getPadre().getValor() +"]");
+            nodosHijos = 0;
             if(navegador.getHijoIzquierdo() != null){
-                System.out.println("Agregado por la izquierda: " + navegador.getHijoIzquierdo().getValor());
                 porVisitar.agregarAlFinal(navegador.getHijoIzquierdo());
-                
-                if(visitaAnterior.equals("izquierda")){
-                    profundidad++;
-                }
-                visitaAnterior = "izquierda";
+                nodosHijos++;
             }
-            else if(navegador.getHijoDerecho() != null){
-               
-                System.out.println("Agregado por la derecha: " + navegador.getHijoDerecho().getValor());
+            if(navegador.getHijoDerecho() != null){
                 porVisitar.agregarAlFinal(navegador.getHijoDerecho());
-                if(visitaAnterior.equals("derecha")){
-                    profundidad++;
-                }
-                visitaAnterior = "derecha"; 
+                nodosHijos++;
             }
-            else{
-                //caso donde se llego a un nodo hoja, y se agrega el nodo actualmente para explorar la derecha
-                porVisitar.agregarAlFinal(navegador);
+            if(nodosHijos == 0){
+                nodosHoja.agregarAlFinal(navegador);
             }
         }
-        return profundidad;
+        System.out.println("Nodos hoja para explorar profundidad:");
+        nodosHoja.imprimir();
+        
+        //Ahora recorremos los padres de las hojas hasta encontrar la raiz 
+        while(!nodosHoja.esVacia()){
+            //Agarrar cada uno de los nodos hoja
+            navegador = nodosHoja.devuelveDelPrincipio();
+            System.out.println("navegador asignado a: " + navegador.getValor());
+            contador = 0;
+            
+            while(navegador != nodoRaiz){
+                navegador = navegador.getPadre();
+                System.out.println("    Ascendiendo a: " + navegador.getValor());
+                contador++;
+            }
+            
+            if(contador>profundidadMayor){
+                profundidadMayor = contador;
+            }
+            
+        }
+        return profundidadMayor;
     }
     
 }

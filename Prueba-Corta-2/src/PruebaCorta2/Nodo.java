@@ -15,6 +15,8 @@ public class Nodo {
     Nodo siguiente;
     int altura;
     int valor;
+    boolean izquierdaVisitada;
+    boolean derechaVisitada;
     boolean visitado;
     
     
@@ -25,7 +27,8 @@ public class Nodo {
         this.hijoDerecho = null;
         this.valor = 0;
         this.altura = 0;
-        this.visitado = false;
+        this.izquierdaVisitada = false;
+        this.derechaVisitada = false;
         this.siguiente = null;
     }
     
@@ -36,8 +39,26 @@ public class Nodo {
         this.valor = nuevoValor;
         this.altura = 0;
         this.siguiente = null;
+        this.izquierdaVisitada = false;
+        this.derechaVisitada = false;
     }
 
+    public boolean isIzquierdaVisitada() {
+        return izquierdaVisitada;
+    }
+
+    public void setIzquierdaVisitada(boolean izquierdaVisitada) {
+        this.izquierdaVisitada = izquierdaVisitada;
+    }
+
+    public boolean isDerechaVisitada() {
+        return derechaVisitada;
+    }
+
+    public void setDerechaVisitada(boolean derechaVisitada) {
+        this.derechaVisitada = derechaVisitada;
+    }
+    
     public Nodo getSiguiente() {
         return siguiente;
     }

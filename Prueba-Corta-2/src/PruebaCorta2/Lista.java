@@ -30,9 +30,11 @@ public class Lista {
     }
     
     public void agregarAlFinal(Nodo nuevoNodo){
-        this.imprimir();
+//        System.out.println("Agregando el nodo al final:" + nuevoNodo.getValor());
+//        this.imprimir();
         if(this.primero == null){
             this.primero = nuevoNodo;
+            this.ultimo = this.primero;
         }
         else if(this.primero.getSiguiente() == null){
             this.primero.setSiguiente(nuevoNodo);
@@ -80,9 +82,8 @@ public class Lista {
     public void imprimir(){
         Nodo navegador = this.primero;
         String lista = "";
-        while(navegador != ultimo){
+        while(navegador != null){
             lista += "[" + String.valueOf(navegador.getValor()) + "] ";
-            System.out.println("Nodo ->" + navegador.getValor());
             navegador = navegador.getSiguiente();
         }
         System.out.println(lista);
