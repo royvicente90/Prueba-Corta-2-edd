@@ -27,11 +27,19 @@ public class Main {
         int balance = nuevoArbol.getBalance(nodoRaiz);
         
         
-        System.out.println("--Determinando el balance--");
-        System.out.println("Balance de la raiz: "+balance);
+//        System.out.println("--Determinando el balance--");
+//        System.out.println("Balance de la raiz: "+balance);
 
 //        Lista nodosHoja = nuevoArbol.getNodosHoja(nodoRaiz);
 //        nodosHoja.imprimir();
+
+        Nodo nodoObjetivo = nuevoArbol.nodoPorValor(5);
+        if(nodoObjetivo != null){
+            System.out.println("Padre del nodo:" + nodoObjetivo.getPadre().getValor());
+        }
+        else{
+            System.out.println("Nodo no econtrado");
+        }
         
     }
     

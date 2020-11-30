@@ -173,8 +173,44 @@ public class Arbol {
         return balanceDerecho - balanceIzquierdo;
     }
     
-    public void balancearArbol(){
-        //
+    public void rotacionIzquierda(Nodo nodoProblema){
+        //Determinar si el nodo problema hijo esta por la izquierda o la derecha
+        if(nodoProblema.getPadre().getHijoDerecho() == nodoProblema){
+            System.out.println("Es el hijo por la derecha");
+        }
+        else{
+            System.out.println("Es hijo izquierdo");
+        }
+    }
+    
+    public Nodo nodoPorValor(int valor){
+        Lista porVisitar = new Lista();
+        porVisitar.agregarAlFinal(this.raiz);
+        boolean finalizado = false;
+        Nodo navegador = new Nodo();
+        Nodo nodoObjetivo = null;
+        
+        while(!finalizado){
+            if(porVisitar.esVacia()){
+                finalizado = true;
+            }
+            else{
+                navegador = porVisitar.devuelveDelPrincipio();
+                if (navegador.getValor() == valor){
+                    nodoObjetivo = navegador;
+                    finalizado = true;
+                }
+                else{
+                    if(navegador.getHijoIzquierdo() != null){
+                        porVisitar.agregarAlFinal(navegador.getHijoIzquierdo());
+                    }
+                    if(navegador.getHijoDerecho() != null){
+                        porVisitar.agregarAlFinal(navegador.getHijoDerecho());
+                    }
+                }
+            }
+        }
+        return nodoObjetivo;
     }
     
 }
