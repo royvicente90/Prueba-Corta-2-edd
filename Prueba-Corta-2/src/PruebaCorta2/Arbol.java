@@ -52,7 +52,7 @@ public class Arbol {
                         navegador = navegador.getHijoIzquierdo();
                     }
                 }
-                else{
+                else if(navegador.getValor() < nuevoNodo.getValor()){
                     if(navegador.getHijoDerecho() == null){
                         navegador.setHijoDerecho(nuevoNodo);
                         nuevoNodo.setPadre(navegador);
@@ -63,6 +63,9 @@ public class Arbol {
                         navegador = navegador.getHijoDerecho();
                     }
                     
+                }
+                else{
+                    fondoDelArbol = true;
                 }
             }
         }
@@ -100,60 +103,35 @@ public class Arbol {
     }
     
     public int getProfundidad(Nodo nodoRaiz){
-        System.out.println("--Iniciando get profundidad--");
+        System.out.println("--Iniciando getProfunidad para el nodo raiz: " + nodoRaiz.getValor());
         int profundidadMayor = 0;
         int contador = 0;
         Lista porVisitar = new Lista();
         porVisitar.agregarAlFinal(nodoRaiz);
         Nodo navegador;
         Lista nodosHoja = new Lista();
-        
-//        while(!porVisitar.esVacia()){
-//            navegador = porVisitar.devuelveDelPrincipio();
-//            System.out.println("En el nodo:" + navegador.getValor());
-//            if(navegador.getHijoIzquierdo() != null){
-//                if(!navegador.isIzquierdaVisitada()){
-//                   System.out.println("Agregado por la izquierda: " + navegador.getHijoIzquierdo().getValor());
-//                   porVisitar.agregarAlFinal(navegador.getHijoIzquierdo());
-//                   navegador.setIzquierdaVisitada(true);
-//                }
-//                if(visitaAnterior.equals("izquierda")){
-//                    profundidad++;
-//                }
-//                visitaAnterior = "izquierda";
-//            }
-//            else if(navegador.getHijoDerecho() != null && !navegador.isDerechaVisitada()){
-//               
-//                System.out.println("Agregado por la derecha: " + navegador.getHijoDerecho().getValor());
-//                porVisitar.agregarAlFinal(navegador.getHijoDerecho());
-//                navegador.setDerechaVisitada(true);
-//                if(visitaAnterior.equals("derecha")){
-//                    profundidad++;
-//                }
-//                visitaAnterior = "derecha"; 
-//            }
-//            else{
-//                //caso donde se llego a un nodo hoja, y se agrega el nodo actualmente para explorar la derecha
-//                porVisitar.agregarAlFinal(navegador.getPadre());
-//            }
-//        }
         int nodosHijos = 0;
         //Ciclo para encontrar todos los nodos hoja del sistema
         while(!porVisitar.esVacia()){
             navegador = porVisitar.devuelveDelPrincipio();
+            System.out.println("Desapilando "+navegador.getValor());
 //            System.out.println(navegador.getValor() + " - [Hijo de "+ navegador.getPadre().getValor() +"]");
             nodosHijos = 0;
             if(navegador.getHijoIzquierdo() != null){
                 porVisitar.agregarAlFinal(navegador.getHijoIzquierdo());
+//                System.out.println("Apilando:" + navegador.getHijoIzquierdo().getValor());
                 nodosHijos++;
             }
             if(navegador.getHijoDerecho() != null){
                 porVisitar.agregarAlFinal(navegador.getHijoDerecho());
+//                System.out.println("Apilando:" + navegador.getHijoDerecho().getValor());
                 nodosHijos++;
             }
             if(nodosHijos == 0){
                 nodosHoja.agregarAlFinal(navegador);
+//                System.out.println("Encontrado nodo Hoja: " + navegador.getValor());
             }
+//            porVisitar.imprimir();
         }
         System.out.println("Nodos hoja para explorar profundidad:");
         nodosHoja.imprimir();
@@ -162,14 +140,14 @@ public class Arbol {
         while(!nodosHoja.esVacia()){
             //Agarrar cada uno de los nodos hoja
             navegador = nodosHoja.devuelveDelPrincipio();
-            System.out.println("navegador asignado a: " + navegador.getValor());
             contador = 0;
-            
-            while(navegador != nodoRaiz){
+            System.out.println("-- Iniciando Busqueda de Profundidad --");
+            while(navegador.getPadre() != nodoRaiz){
+                System.out.println("Buscando profundidad en " + navegador.getValor());
                 navegador = navegador.getPadre();
-                System.out.println("    Ascendiendo a: " + navegador.getValor());
                 contador++;
             }
+            contador++;
             
             if(contador>profundidadMayor){
                 profundidadMayor = contador;
@@ -177,6 +155,20 @@ public class Arbol {
             
         }
         return profundidadMayor;
+    }
+    
+    public int getBalance(Nodo nodoRaiz){
+        int balanceDerecho = 0;
+        int balanceIzquierdo = 0;
+        if(nodoRaiz.getHijoIzquierdo() != null){
+            Nodo nodoIzquierdo = nodoRaiz.getHijoIzquierdo();
+            balanceIzquierdo = this.getProfundidad(nodoIzquierdo);
+        }
+        if(nodoRaiz.getHijoDerecho() != null){
+           Nodo nodoDerecho = nodoRaiz.getHijoDerecho();
+           balanceDerecho = this.getProfundidad(nodoDerecho); 
+        }
+        return balanceDerecho - balanceIzquierdo;
     }
     
 }

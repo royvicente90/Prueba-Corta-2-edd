@@ -20,10 +20,13 @@ public class Main {
         nuevoArbol.agregarHijo(12);
         nuevoArbol.agregarHijo(5);
         nuevoArbol.agregarHijo(1);
-        nuevoArbol.imprimir();
+//        nuevoArbol.imprimir();
         Nodo nodoRaiz = nuevoArbol.getRaiz();
-        int profundidad = nuevoArbol.getProfundidad(nodoRaiz);
-        System.out.println("Profundidad: " +profundidad);
+//        int profundidad = nuevoArbol.getProfundidad(nodoRaiz);
+//        System.out.println("Profundidad: " +profundidad);
+        int balance = nuevoArbol.getBalance(nodoRaiz);
+        System.out.println("--Determinando el balance--\n\n");
+        System.out.println("Balance de la raiz: "+balance);
         
     }
     

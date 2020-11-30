@@ -35,20 +35,44 @@ public class Lista {
         if(this.primero == null){
             this.primero = nuevoNodo;
             this.ultimo = this.primero;
+            System.out.println("Agregando el primer elemento");
         }
         else if(this.primero.getSiguiente() == null){
             this.primero.setSiguiente(nuevoNodo);
-            this.ultimo = nuevoNodo;
+            this.ultimo = this.primero.getSiguiente();
+            System.out.println("Agregando el segundo elemento");
         }
         else{
             this.ultimo.setSiguiente(nuevoNodo);
             this.ultimo = nuevoNodo;
+            System.out.println("Agregando el >3ro elemento");
         }
+        System.out.println("agregado al final:");
+        this.imprimir();
     }
     
     public Nodo devuelveDelPrincipio(){
-        Nodo nodoObjetivo = this.primero;
-        this.primero = this.primero.getSiguiente();
+        Nodo nodoObjetivo = new Nodo(); 
+        System.out.println("Sacando el primer elemento de esta lista:");
+        this.imprimir();
+        if(this.primero.getSiguiente() != null){
+            System.out.println("Segundo elemento de la lista:" + this.primero.getSiguiente().getValor());
+        }
+        
+        nodoObjetivo.setValor(this.primero.getValor());
+        nodoObjetivo.setPadre(this.primero.getPadre());
+        nodoObjetivo.setHijoDerecho(this.primero.getHijoDerecho());
+        nodoObjetivo.setHijoIzquierdo(this.primero.getHijoIzquierdo());
+        
+        System.out.println("Despues de la asignacion primero vale:" + this.primero.getValor());
+        if(this.primero.getSiguiente() != null){
+            this.primero = this.primero.getSiguiente();      
+        }
+        else{
+            this.primero = null;
+        }
+        System.out.println("Lista sin el primer elemento:");
+        this.imprimir();
         return nodoObjetivo;
     }
     
@@ -91,6 +115,14 @@ public class Lista {
     
     public boolean esVacia(){
         return this.primero == null;
+    }
+    
+    public void vaciar(){
+        if(this.primero != null){
+          this.primero.setSiguiente(null);
+          this.primero = null;
+        } 
+        this.ultimo = null;      
     }
     
     
