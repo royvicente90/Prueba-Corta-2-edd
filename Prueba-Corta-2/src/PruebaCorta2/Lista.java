@@ -42,28 +42,24 @@ public class Lista {
             this.ultimo.setSiguiente(nuevoNodo);
             this.ultimo = nuevoNodo;
         }
-        this.imprimir();
     }
     
     public Nodo devuelveDelPrincipio(){
         Nodo nodoObjetivo = new Nodo(); 
-        System.out.println("Sacando el primer elemento de esta lista:");
-        this.imprimir();
+//        System.out.println("Sacando el primer elemento de esta lista:");
+//        this.imprimir();
         
         nodoObjetivo.setValor(this.primero.getValor());
         nodoObjetivo.setPadre(this.primero.getPadre());
         nodoObjetivo.setHijoDerecho(this.primero.getHijoDerecho());
         nodoObjetivo.setHijoIzquierdo(this.primero.getHijoIzquierdo());
         
-        System.out.println("Despues de la asignacion primero vale:" + this.primero.getValor());
         if(this.primero.getSiguiente() != null){
             this.primero = this.primero.getSiguiente();      
         }
         else{
             this.primero = null;
         }
-        System.out.println("Lista sin el primer elemento:");
-        this.imprimir();
         return nodoObjetivo;
     }
     

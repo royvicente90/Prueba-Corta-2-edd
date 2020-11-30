@@ -25,8 +25,13 @@ public class Main {
 //        int profundidad = nuevoArbol.getProfundidad(nodoRaiz);
 //        System.out.println("Profundidad: " +profundidad);
         int balance = nuevoArbol.getBalance(nodoRaiz);
-        System.out.println("--Determinando el balance--\n\n");
+        
+        
+        System.out.println("--Determinando el balance--");
         System.out.println("Balance de la raiz: "+balance);
+
+//        Lista nodosHoja = nuevoArbol.getNodosHoja(nodoRaiz);
+//        nodosHoja.imprimir();
         
     }
     
