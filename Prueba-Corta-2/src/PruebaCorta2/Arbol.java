@@ -129,7 +129,7 @@ public class Arbol {
             }
             if(nodosHijos == 0){
                 nodosHoja.agregarAlFinal(navegador);
-//                System.out.println("Encontrado nodo Hoja: " + navegador.getValor());
+                System.out.println("Encontrado nodo Hoja: " + navegador.getValor());
             }
 //            porVisitar.imprimir();
         }
@@ -142,10 +142,13 @@ public class Arbol {
             navegador = nodosHoja.devuelveDelPrincipio();
             contador = 0;
             System.out.println("-- Iniciando Busqueda de Profundidad --");
-            while(navegador.getPadre() != nodoRaiz){
-                System.out.println("Buscando profundidad en " + navegador.getValor());
-                navegador = navegador.getPadre();
-                contador++;
+            if(navegador != null){
+                System.out.println("-------------Nodo raiz antes del while:" + nodoRaiz.getValor());
+                while(navegador.getValor() != nodoRaiz.getValor()){
+                    System.out.println("Buscando profundidad en " + navegador.getValor());
+                    navegador = navegador.getPadre();
+                    contador++;
+                }
             }
             contador++;
             

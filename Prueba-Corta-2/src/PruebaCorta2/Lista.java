@@ -30,24 +30,18 @@ public class Lista {
     }
     
     public void agregarAlFinal(Nodo nuevoNodo){
-//        System.out.println("Agregando el nodo al final:" + nuevoNodo.getValor());
-//        this.imprimir();
         if(this.primero == null){
             this.primero = nuevoNodo;
             this.ultimo = this.primero;
-            System.out.println("Agregando el primer elemento");
         }
         else if(this.primero.getSiguiente() == null){
             this.primero.setSiguiente(nuevoNodo);
             this.ultimo = this.primero.getSiguiente();
-            System.out.println("Agregando el segundo elemento");
         }
         else{
             this.ultimo.setSiguiente(nuevoNodo);
             this.ultimo = nuevoNodo;
-            System.out.println("Agregando el >3ro elemento");
         }
-        System.out.println("agregado al final:");
         this.imprimir();
     }
     
@@ -55,9 +49,6 @@ public class Lista {
         Nodo nodoObjetivo = new Nodo(); 
         System.out.println("Sacando el primer elemento de esta lista:");
         this.imprimir();
-        if(this.primero.getSiguiente() != null){
-            System.out.println("Segundo elemento de la lista:" + this.primero.getSiguiente().getValor());
-        }
         
         nodoObjetivo.setValor(this.primero.getValor());
         nodoObjetivo.setPadre(this.primero.getPadre());
