@@ -6,6 +6,9 @@
 package PruebaCorta2;
 
 import javax.swing.JOptionPane;
+import java.io.IOException;
+import java.io.OutputStream;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -106,7 +109,7 @@ public class Interfaz extends javax.swing.JFrame {
         nuevoArbol.agregarHijo(Integer.parseInt(JOptionPane.showInputDialog("Digite el número que desea agregar:")));
         Nodo nodoRaiz = nuevoArbol.getRaiz();
         int balance = nuevoArbol.getBalance(nodoRaiz);
-        nuevoArbol.imprimir();
+        PrintOut.setText(nuevoArbol.imprimirEnString());
     }//GEN-LAST:event_AgregarActionPerformed
 
     /**
