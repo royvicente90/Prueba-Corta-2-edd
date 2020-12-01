@@ -23,10 +23,10 @@ public class Main {
         nuevoArbol.agregarHijo(25);
         nuevoArbol.agregarHijo(30);
 //        nuevoArbol.imprimir();
-        Nodo nodoRaiz = nuevoArbol.getRaiz();
-//        int profundidad = nuevoArbol.getProfundidad(nodoRaiz);
-//        System.out.println("Profundidad: " +profundidad);
-        int balance = nuevoArbol.getBalance(nodoRaiz);
+//        Nodo nodoRaiz = nuevoArbol.getRaiz();
+////        int profundidad = nuevoArbol.getProfundidad(nodoRaiz);
+////        System.out.println("Profundidad: " +profundidad);
+//        int balance = nuevoArbol.getBalance(nodoRaiz);
         
         
 //        System.out.println("--Determinando el balance--");
@@ -34,8 +34,12 @@ public class Main {
 
 //        Lista nodosHoja = nuevoArbol.getNodosHoja(nodoRaiz);
 //        nodosHoja.imprimir();
+        System.out.println("--Arbol original--");
         nuevoArbol.imprimir();
-        System.out.println("^--Arbol original--\n\n");
+        System.out.println("\n\n--Arbol balanceado--");
+        nuevoArbol.balancear();
+        nuevoArbol.imprimir();
+        
 //        Nodo nodoProblema = nuevoArbol.nodoPorValor(20);
 //        if(nodoProblema != null){
 //            nuevoArbol.rotacionDerecha(nodoProblema);
@@ -43,9 +47,16 @@ public class Main {
 //        else{
 //            System.out.println("Nodo no econtrado");
 //        }
+//        nuevoArbol.balancear();
+//        String arbol = nuevoArbol.imprimirEnString();
+//        System.out.println("--String del arbol--\n" + arbol);
+        System.out.println("Eliminando el nodo 12");
+        nuevoArbol.eliminarNodo(12);
+        System.out.println("\n\n--Antes de balancear--");
+        nuevoArbol.imprimir();
+        System.out.println("\n\n--Despues de balancear--");
         nuevoArbol.balancear();
-        String arbol = nuevoArbol.imprimirEnString();
-        System.out.println("--String del arbol--\n" + arbol);
+        nuevoArbol.imprimir();
         
         
     }

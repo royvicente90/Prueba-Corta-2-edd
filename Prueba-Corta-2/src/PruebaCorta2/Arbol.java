@@ -435,4 +435,82 @@ public class Arbol {
         }
     }
     
+    public void eliminarNodo(int valor){
+        Nodo nodoAEliminar = this.nodoPorValor(valor);
+        if(nodoAEliminar == null){
+            System.out.println("El valor introducido no pertenece al nodo, agregelo si desea eliminarlo");
+        }
+        else{
+            //Queremos conocer de que lado el nodo a eliminar es hijo del padre
+            if(nodoAEliminar.getPadre().getHijoIzquierdo().getValor() == nodoAEliminar.getValor()){
+                //El nodo a eliminar es el hijo izquierdo de su padre
+                if(nodoAEliminar.getHijoIzquierdo() != null){
+                    nodoAEliminar.getPadre().setHijoIzquierdo(nodoAEliminar.getHijoIzquierdo());
+                    nodoAEliminar.getHijoIzquierdo().setPadre(nodoAEliminar.getPadre());
+                    if(nodoAEliminar.getHijoDerecho() != null){
+                        Lista nodosHoja = this.getNodosHoja(nodoAEliminar.getHijoDerecho());
+                        while(!nodosHoja.esVacia()){
+                            Nodo nav = nodosHoja.devuelveDelPrincipio();
+                            while(nav.getValor() != nodoAEliminar.getValor()){
+                                this.agregarHijo(nav.getValor());
+                                nav = nav.getPadre();
+                            }
+                        }
+                    }
+                }
+                else if(nodoAEliminar.getHijoDerecho() != null){
+                    nodoAEliminar.getPadre().setHijoIzquierdo(nodoAEliminar.getHijoDerecho());
+                    nodoAEliminar.setHijoDerecho(nodoAEliminar.getPadre());
+                    if(nodoAEliminar.getHijoIzquierdo() != null){
+                        Lista nodosHoja = this.getNodosHoja(nodoAEliminar.getHijoIzquierdo());
+                        while(!nodosHoja.esVacia()){
+                            Nodo nav = nodosHoja.devuelveDelPrincipio();
+                            while(nav.getValor() != nodoAEliminar.getValor()){
+                                this.agregarHijo(nav.getValor());
+                                nav = nav.getPadre();
+                            }
+                        }
+                    }
+                    
+                }
+            }
+            else{
+                //El nodo a eliminar es el hijo derecho de su padre
+                if(nodoAEliminar.getHijoIzquierdo() != null){
+                    nodoAEliminar.getPadre().setHijoDerecho(nodoAEliminar.getHijoIzquierdo());
+                    nodoAEliminar.getHijoIzquierdo().setPadre(nodoAEliminar.getPadre());
+                    if(nodoAEliminar.getHijoDerecho() != null){
+                        Lista nodosHoja = this.getNodosHoja(nodoAEliminar.getHijoDerecho());
+                        while(!nodosHoja.esVacia()){
+                            Nodo nav = nodosHoja.devuelveDelPrincipio();
+                            while(nav.getValor() != nodoAEliminar.getValor()){
+                                this.agregarHijo(nav.getValor());
+                                nav = nav.getPadre();
+                            }
+                        }
+                    }
+                }
+                else if(nodoAEliminar.getHijoDerecho() != null){
+                    nodoAEliminar.getPadre().setHijoIzquierdo(nodoAEliminar.getHijoDerecho());
+                    nodoAEliminar.setHijoDerecho(nodoAEliminar.getPadre());
+                    if(nodoAEliminar.getHijoIzquierdo() != null){
+                        Lista nodosHoja = this.getNodosHoja(nodoAEliminar.getHijoIzquierdo());
+                        while(!nodosHoja.esVacia()){
+                            Nodo nav = nodosHoja.devuelveDelPrincipio();
+                            while(nav.getValor() != nodoAEliminar.getValor()){
+                                this.agregarHijo(nav.getValor());
+                                nav = nav.getPadre();
+                            }
+                        }
+                    }
+                    
+                }
+            }
+            nodoAEliminar.setPadre(null);
+            nodoAEliminar.setHijoIzquierdo(null);
+            nodoAEliminar.setHijoDerecho(null);
+        }
+        System.out.println("Eliminacion del nodo "+nodoAEliminar.getValor() + " finalizada");
+    }
+    
 }
