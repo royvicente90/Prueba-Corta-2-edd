@@ -101,6 +101,37 @@ public class Arbol {
         } 
     }
     
+    public String imprimirEnString(){
+        Nodo navegador = this.raiz;
+        boolean visitadoCompleto = false;
+        Lista porVisitar = new Lista();
+        int nivel = 0;
+        String arbol = "";
+        
+        if(navegador != null){
+            arbol += Integer.toString((navegador.getValor()))+" - [Sin padre]\n";
+            if(navegador.getHijoIzquierdo() != null){
+                porVisitar.agregarAlFinal(navegador.getHijoIzquierdo());
+            }
+            if(navegador.getHijoDerecho() != null){
+                porVisitar.agregarAlFinal(navegador.getHijoDerecho());
+            }
+        }
+        while(!porVisitar.esVacia()){
+            navegador = porVisitar.devuelveDelPrincipio();
+            System.out.println(navegador.getValor() + " - [Hijo de "+ navegador.getPadre().getValor() +"]");
+            arbol += Integer.toString(navegador.getValor()) + " - [Hijo de " + Integer.toString(navegador.getPadre().getValor()) +"]\n";
+            
+            if(navegador.getHijoIzquierdo() != null){
+                porVisitar.agregarAlFinal(navegador.getHijoIzquierdo());
+            }
+            if(navegador.getHijoDerecho() != null){
+                porVisitar.agregarAlFinal(navegador.getHijoDerecho());
+            }
+        } 
+        return arbol;
+    }
+    
     public int getProfundidad(Nodo nodoRaiz){
         int profundidadMayor = 0;
         Nodo navegador;
@@ -174,7 +205,7 @@ public class Arbol {
     
     public void rotacionIzquierda(Nodo nodoProblema){
         //Determinar si el nodo problema hijo esta por la izquierda o la derecha de su padre
-        System.out.println("Haciendole una rotacion izquierda al nodo ->" + nodoProblema.getValor());
+//        System.out.println("Haciendole una rotacion izquierda al nodo ->" + nodoProblema.getValor());
         if(nodoProblema.getValor() != this.raiz.getValor()){
             
             if(nodoProblema.getPadre().getHijoDerecho().getValor() == nodoProblema.getValor()){
@@ -203,7 +234,7 @@ public class Arbol {
                 nodoProblema.setHijoDerecho(null);
                 nodoProblema.setHijoDerecho(null);
                 nodoProblema.setSiguiente(null);
-                System.out.println("Rotacion izquierda completa!");
+//                System.out.println("Rotacion izquierda completa!");
             }
             else{
                 //Sabemos que es hijo izquierdo, entonces podemos enlazar el padre por la izquierda
@@ -213,16 +244,16 @@ public class Arbol {
                 //Volvemos a agregar el nodo
                 if(nodoProblema.getHijoDerecho() != null){
                     Lista listaParaAgregar = this.getNodosHoja(nodoProblema.getHijoDerecho());
-                    System.out.println("Lista para agregar:");
-                    listaParaAgregar.imprimir();
+//                    System.out.println("Lista para agregar:");
+//                    listaParaAgregar.imprimir();
                     Nodo nav = new Nodo();
                     while(!listaParaAgregar.esVacia()){
                         nav = listaParaAgregar.devuelveDelPrincipio();
-                        System.out.println("nav->" + nav.getValor());
+//                        System.out.println("nav->" + nav.getValor());
                         while(nav.getValor() != nodoProblema.getValor()){
                             this.agregarHijo(nav.getValor());
                             nav = nav.getPadre();
-                            System.out.println("nav->" + nav.getValor());
+//                            System.out.println("nav->" + nav.getValor());
                         }
                     }
                 }
@@ -236,17 +267,17 @@ public class Arbol {
                 nodoProblema.setHijoDerecho(null);
                 nodoProblema.setSiguiente(null);
 
-                System.out.println("Rotacion izquierda completa!");
+//                System.out.println("Rotacion izquierda completa!");
             }
         }
     }
     
     public void rotacionDerecha(Nodo nodoProblema){
         //Determinar si el nodo problema hijo esta por la izquierda o la derecha de su padre
-        System.out.println("Haciendole una rotacion derecha al nodo ->" + nodoProblema.getValor());
+//        System.out.println("Haciendole una rotacion derecha al nodo ->" + nodoProblema.getValor());
         if(nodoProblema.getValor() != this.raiz.getValor()){
             if(nodoProblema.getPadre().getHijoDerecho().getValor() == nodoProblema.getValor()){
-                System.out.println("Es hijo por la derecha!");
+//                System.out.println("Es hijo por la derecha!");
                 nodoProblema.getPadre().setHijoDerecho(nodoProblema.getHijoDerecho());
                 nodoProblema.getHijoDerecho().setPadre(nodoProblema.getPadre());
 
@@ -271,10 +302,10 @@ public class Arbol {
                 nodoProblema.setHijoDerecho(null);
                 nodoProblema.setHijoDerecho(null);
                 nodoProblema.setSiguiente(null);
-                System.out.println("Rotacion derecha completa!");
+//                System.out.println("Rotacion derecha completa!");
             }
             else{
-                System.out.println("Es hijo por la izquierda!");
+//                System.out.println("Es hijo por la izquierda!");
                 //Sabemos que es hijo izquierdo, entonces podemos enlazar el padre por la izquierda
                 nodoProblema.getPadre().setHijoIzquierdo(nodoProblema.getHijoDerecho());
                 nodoProblema.getHijoDerecho().setPadre(nodoProblema.getPadre());
@@ -301,7 +332,7 @@ public class Arbol {
                 nodoProblema.setHijoDerecho(null);
                 nodoProblema.setSiguiente(null);
 
-                System.out.println("Rotacion derecha completa!");
+//                System.out.println("Rotacion derecha completa!");
             }
         }
     }
@@ -342,10 +373,9 @@ public class Arbol {
         Nodo navegador = new Nodo();
         
         while(!nodosHoja.esVacia()){
-            nodosHoja.imprimir();
+//            nodosHoja.imprimir();
             //Guardamos hoja actual para devolver el nodo si hay un desbalance
             Nodo hojaActual = nodosHoja.devuelveDelPrincipio();
-            System.out.println("Desapilando: "+ hojaActual.getValor());
             navegador = hojaActual;
             while(navegador.getValor() != this.raiz.getValor()){
                 
@@ -354,7 +384,6 @@ public class Arbol {
 //                    System.out.println("Nodo" + navegador.getValor() + " esta desbalanceado hacia la derecha!");
                     //Aqui normalmente devolveriamos a navegador a ser el nodo raiz;
                     this.rotacionDerecha(navegador);
-                    this.imprimir();
                     nodosHoja = this.getNodosHoja(this.raiz);
                     navegador = this.raiz;
                 }
@@ -362,16 +391,47 @@ public class Arbol {
 //                    System.out.println("Nodo" + navegador.getValor() + " esta desbalanceado hacia la izquierda!");
                     //Aqui normalmente devolveriamos a navegador a ser el nodo raiz;
                     this.rotacionIzquierda(navegador);
-                    this.imprimir();
                     nodosHoja = this.getNodosHoja(this.raiz);
                     navegador = this.raiz;
                 }
                 else{
                     navegador = navegador.getPadre();
                 }
-                System.out.println("Iterando al nodo " + navegador.getValor() );
                 
             }
+        }
+        
+        int balanceRaiz = this.getBalance(this.raiz);
+        if(balanceRaiz > 1){
+            //Balance de raiz por la derecha
+            Nodo nodoAuxiliar = this.raiz;
+            this.raiz.getHijoDerecho();
+            Lista hojasRaiz = this.getNodosHoja(nodoAuxiliar.getHijoIzquierdo());
+            while(!hojasRaiz.esVacia()){
+                Nodo nav = hojasRaiz.devuelveDelPrincipio();
+                while(nav.getValor() != nodoAuxiliar.getValor()){
+                    this.agregarHijo(nav.getValor());
+                    nav = nav.getPadre();
+                }
+            }
+            this.balancear();
+        }
+        else if(balanceRaiz < -1){
+            //Balance de raiz por la izquierda
+            Nodo nodoAuxiliar = this.raiz;
+            this.raiz = this.raiz.getHijoIzquierdo();
+            Lista hojasRaiz = this.getNodosHoja(nodoAuxiliar.getHijoDerecho());
+            while(!hojasRaiz.esVacia()){
+               Nodo nav = hojasRaiz.devuelveDelPrincipio();
+                while(nav.getValor() != nodoAuxiliar.getValor()){
+                    this.agregarHijo(nav.getValor());
+                    nav = nav.getPadre();
+                } 
+            }
+            this.balancear();
+        }
+        else{
+            System.out.println("--Balanceo finalizado exitosamente-- ");
         }
     }
     
