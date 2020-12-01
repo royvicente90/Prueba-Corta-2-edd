@@ -54,6 +54,11 @@ public class Interfaz extends javax.swing.JFrame {
         });
 
         Borrar.setText("Borrar");
+        Borrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BorrarActionPerformed(evt);
+            }
+        });
 
         NuevoArbol.setText("Crear nuevo arbol");
         NuevoArbol.addActionListener(new java.awt.event.ActionListener() {
@@ -108,7 +113,8 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
         // TODO add your handling code here:
-        nuevoArbol.agregarHijo(Integer.parseInt(JOptionPane.showInputDialog("Digite el número que desea agregar:")));
+        int valorNodo = Integer.parseInt(JOptionPane.showInputDialog("Digite el número que desea agregar:"));
+        nuevoArbol.agregarHijo(valorNodo);
         nuevoArbol.balancear();
         PrintOut.setText(nuevoArbol.imprimirEnString());
     }//GEN-LAST:event_AgregarActionPerformed
@@ -118,6 +124,20 @@ public class Interfaz extends javax.swing.JFrame {
         nuevoArbol = new Arbol();
         PrintOut.setText("");
     }//GEN-LAST:event_NuevoArbolActionPerformed
+
+    private void BorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarActionPerformed
+        // TODO add your handling code here:
+        int valorNodo = Integer.parseInt(JOptionPane.showInputDialog("Digite el número que desea agregar:"));
+        Nodo nodoAEliminar = nuevoArbol.nodoPorValor(valorNodo);
+        if(nodoAEliminar != null){
+            nuevoArbol.eliminarNodo(valorNodo);
+        }
+        else{
+            System.out.println("El valor introducido no corresponde con ninguna clave del arbol. Ingrese un numero valido");
+        }
+        nuevoArbol.balancear();
+        PrintOut.setText(nuevoArbol.imprimirEnString());
+    }//GEN-LAST:event_BorrarActionPerformed
 
     /**
      * @param args the command line arguments
