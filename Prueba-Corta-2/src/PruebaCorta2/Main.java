@@ -44,7 +44,8 @@ public class Main {
 //            System.out.println("Nodo no econtrado");
 //        }
         nuevoArbol.balancear();
-        nuevoArbol.imprimir();
+        String arbol = nuevoArbol.imprimirEnString();
+        System.out.println("--String del arbol--\n" + arbol);
         
         
     }
