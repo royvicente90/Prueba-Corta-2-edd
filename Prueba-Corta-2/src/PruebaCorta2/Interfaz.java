@@ -56,6 +56,11 @@ public class Interfaz extends javax.swing.JFrame {
         Borrar.setText("Borrar");
 
         NuevoArbol.setText("Crear nuevo arbol");
+        NuevoArbol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NuevoArbolActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -107,6 +112,12 @@ public class Interfaz extends javax.swing.JFrame {
         nuevoArbol.balancear();
         PrintOut.setText(nuevoArbol.imprimirEnString());
     }//GEN-LAST:event_AgregarActionPerformed
+
+    private void NuevoArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoArbolActionPerformed
+        // TODO add your handling code here:
+        nuevoArbol = new Arbol();
+        PrintOut.setText("");
+    }//GEN-LAST:event_NuevoArbolActionPerformed
 
     /**
      * @param args the command line arguments

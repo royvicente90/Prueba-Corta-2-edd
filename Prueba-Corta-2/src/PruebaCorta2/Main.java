@@ -11,6 +11,10 @@ package PruebaCorta2;
  */
 public class Main {
     public static void main(String [] args) {
+        Interfaz inter = new Interfaz();
+        inter.show();
+        
+        /*
         System.out.println("--Inicio del programa--\n\n");
         Arbol nuevoArbol = new Arbol();
         nuevoArbol.agregarHijo(15);
@@ -57,7 +61,7 @@ public class Main {
         System.out.println("\n\n--Despues de balancear--");
         nuevoArbol.balancear();
         nuevoArbol.imprimir();
-        
+        */
         
     }
     
