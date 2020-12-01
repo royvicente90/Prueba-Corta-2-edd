@@ -6,9 +6,6 @@
 package PruebaCorta2;
 
 import javax.swing.JOptionPane;
-import java.io.IOException;
-import java.io.OutputStream;
-import javax.swing.SwingUtilities;
 
 /**
  *
