@@ -107,8 +107,7 @@ public class Interfaz extends javax.swing.JFrame {
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
         // TODO add your handling code here:
         nuevoArbol.agregarHijo(Integer.parseInt(JOptionPane.showInputDialog("Digite el número que desea agregar:")));
-        Nodo nodoRaiz = nuevoArbol.getRaiz();
-        int balance = nuevoArbol.getBalance(nodoRaiz);
+        nuevoArbol.balancear();
         PrintOut.setText(nuevoArbol.imprimirEnString());
     }//GEN-LAST:event_AgregarActionPerformed
 
