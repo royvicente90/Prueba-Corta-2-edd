@@ -36,13 +36,14 @@ public class Main {
 //        nodosHoja.imprimir();
         nuevoArbol.imprimir();
         System.out.println("^--Arbol original--\n\n");
-        Nodo nodoProblema = nuevoArbol.nodoPorValor(20);
-        if(nodoProblema != null){
-            nuevoArbol.rotacionDerecha(nodoProblema);
-        }
-        else{
-            System.out.println("Nodo no econtrado");
-        }
+//        Nodo nodoProblema = nuevoArbol.nodoPorValor(20);
+//        if(nodoProblema != null){
+//            nuevoArbol.rotacionDerecha(nodoProblema);
+//        }
+//        else{
+//            System.out.println("Nodo no econtrado");
+//        }
+        nuevoArbol.balancear();
         nuevoArbol.imprimir();
         
         
